@@ -45,12 +45,12 @@ var Player= function(){
     ];
     this.score=0;
     this.lives=5;
-}
+};
 Player.prototype.reset=function(){
     //this.updateData("collision");
     this.x=202;
     this.y=402;
-}
+};
 Player.prototype.checkCollision=function(){
     for(var e=0;e<allEnemies.length;e++){
         if(allEnemies[e].x < player.x + 40 &&
@@ -61,11 +61,11 @@ Player.prototype.checkCollision=function(){
             this.updateData("collision");
         }
      }  
-}
+};
 Player.prototype.data=function(){
     ctx.clearRect(0,0,505,100);
     ctx.font="40px Gloria Hallelujah";
-    ctx.fillStyle="blue"
+    ctx.fillStyle="blue";
     ctx.strokeStyle=" #1BD2D5";
     ctx.strokeText("score:",20,45);
     ctx.fillText("score:",20,45);
@@ -73,7 +73,7 @@ Player.prototype.data=function(){
     ctx.fillText("lives:",330,45);
     ctx.fillText("0",120,45);
     ctx.fillText("5",430,45);
-}
+};
 Player.prototype.updateData=function(data){
     ctx.font="40px Gloria Hallelujah";
     ctx.fillStyle="blue";
@@ -95,7 +95,7 @@ Player.prototype.updateData=function(data){
       ctx.clearRect(430,5,505,100);
       ctx.fillText(player.lives,430,45);  
     }
-}
+};
 Player.prototype.update = function(dt) {
     this.checkCollision();
 };
@@ -127,7 +127,7 @@ Player.prototype.handleInput=function(key){
         }
      }
 
-}
+};
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
