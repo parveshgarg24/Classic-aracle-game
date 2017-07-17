@@ -135,7 +135,6 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
         renderEntities();
     }
 
@@ -159,7 +158,8 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        console.log("called");
+        player.data();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -171,7 +171,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        "images/char-cat-girl.png",
+        "images/char-horn-girl.png",
+        "images/char-boy.png",
+        "images/char-pink-girl.png",
+        "images/char-princess-girl.png"
     ]);
     Resources.onReady(init);
 
