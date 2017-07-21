@@ -1,4 +1,5 @@
 // Enemies our player must avoid
+"use strict"
 var Enemy = function(locX,locY) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -62,8 +63,20 @@ Player.prototype.checkCollision=function(){
         }
      }  
 };
-Player.prototype.data=function(){
-    ctx.clearRect(0,0,505,100);
+Player.prototype.updateData=function(data){
+    if(data==="win"){    
+    this.score+=100;
+    setTimeout(function(){player.reset();}, 400);
+    }
+    else if(data==="collision"){
+      this.lives--;
+      if(player.lives===0){   
+        player.score=0;
+        player.lives=5;
+        player.updateData();
+    }
+    }
+    ctx.clearRect(0,0,505,200);
     ctx.font="40px Gloria Hallelujah";
     ctx.fillStyle="blue";
     ctx.strokeStyle=" #1BD2D5";
@@ -71,32 +84,12 @@ Player.prototype.data=function(){
     ctx.fillText("score:",20,45);
     ctx.strokeText("lives:",330,45);
     ctx.fillText("lives:",330,45);
-    ctx.fillText("0",120,45);
-    ctx.fillText("5",430,45);
-};
-Player.prototype.updateData=function(data){
-    ctx.font="40px Gloria Hallelujah";
-    ctx.fillStyle="blue";
-    if(data==="win"){
-    Enemy.speed=100;    
-    this.score+=100;
-    ctx.clearRect(120,5,200,100);
-    ctx.fillText(player.score,120,45);
-    setTimeout(function(){player.reset();}, 400);
-
-    }
-    else if(data==="collision"){
-      player.lives--;
-      if(player.lives===0){   
-        player.score=0;
-        player.lives=5;
-        player.data();
-      }
-      ctx.clearRect(430,5,505,100);
-      ctx.fillText(player.lives,430,45);  
-    }
+    ctx.fillStyle="#FF6600";
+    ctx.fillText(this.score,120,45);
+    ctx.fillText(this.lives,430,45);
 };
 Player.prototype.update = function(dt) {
+    this.updateData();
     this.checkCollision();
 };
 Player.prototype.render = function() {
